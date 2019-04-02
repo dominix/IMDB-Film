@@ -888,7 +888,7 @@ sub genres {
 
 		while(my $tag = $parser->get_tag('a')) {
 			my $genre = $parser->get_text;	
-			last unless $tag->[1]{href} =~ m!/genre/!i;
+			last unless $tag->[1]{href} =~ m/genre/i;
 			last if $genre =~ /more/i;
 			push @genres, $genre;
 		}	
@@ -988,7 +988,7 @@ sub rating {
 		my $parser = $self->_parser(FORCED);
 	
 		while(my $tag = $parser->get_tag('div')) {
-			last if $tag->[1]{class} && $tag->[1]{class} eq 'star-box-details';
+			last if $tag->[1]{class} && $tag->[1]{class} eq 'ratingValue';
 		}
 		
 		my $text = $parser->get_trimmed_text('/a');
